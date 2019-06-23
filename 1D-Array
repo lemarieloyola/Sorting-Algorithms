@@ -51,7 +51,7 @@ void swap(int *a, int *b) {
 int partition(array a, int low, int high) {
     int i, pivot = a.values[high];
     int pIndex = low;
-    for(i=low; i<= high; i++) {
+    for(i=low; i< high; i++) {
         if (a.values[i] <= pivot) {
             swap(&a.values[i], &a.values[pIndex]);
             pIndex++;
