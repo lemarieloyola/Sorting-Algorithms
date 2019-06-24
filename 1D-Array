@@ -70,6 +70,24 @@ void quicksort(array *a, int low, int high) {
     }
 }
 
+// Selection sort
+void selectionsort(array b)
+{
+	int i, j, min;
+	for(i = 0; i < b.length-1; i++)
+	{
+		min = i;
+		for(j = i+1; j < b.length; j++)
+		{
+			if(b.values[j] < b.values[min])
+				min = j;
+		}
+	
+		swap(&b.values[i], &b.values[min]);
+	}
+	
+}
+
 void bubbleSort(array a)
 {
 	int nTemp;
@@ -78,7 +96,7 @@ void bubbleSort(array a)
 	{//								compare all elements to one another
 		for(j = 0; j < a.length; j++)//	compares an element (j) to the one beside it (j+1),
 		{//						a switch will occur only if the element at j is greater than the element at j+1
-			if(a.values[j] > a.values[j+1] && j+1 < nSize) //	only compare elements (j's value) until nSize - 1
+			if(a.values[j] > a.values[j+1] && j+1 < a.length) //	only compare elements (j's value) until nSize - 1
 				swap(&a.values[j], &a.values[j+1]);
 		}
 	}
@@ -86,13 +104,13 @@ void bubbleSort(array a)
 int main() {
 
     printf("Before Bubble Sort:\n");
-    array a = createArray(5);
-    randomizeArray(a);
-    printArray(a);
+    array c = createArray(5);
+    randomizeArray(c);
+    printArray(c);
     printf("After Bubble Sort:\n");
-    bubbleSort(a);
-    printArray(a);
-    deleteArray(a);
+    bubbleSort(c);
+    printArray(c);
+    deleteArray(c);
     
     printf("Before Quicksort:\n");
     array a = createArray(5);
@@ -102,6 +120,16 @@ int main() {
     quicksort(&a, 0, a.length-1);
     printArray(a);
     deleteArray(a);
+    
+    printf("\nBefore Selection Sort:\n");
+    array b = createArray(5);
+    randomizeArray(b);
+    printArray(b);
+    printf("After Selection Sort:\n");
+    selectionsort(b);
+    printArray(b);
+    deleteArray(b);
+    
 
     return 0;
 }
